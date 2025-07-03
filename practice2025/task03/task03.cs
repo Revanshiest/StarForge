@@ -8,6 +8,7 @@ namespace task03
     {
         private readonly List<T> _items = new();
         public void Add(T item) => _items.Add(item);
+        public void Remove(T item) => _items.Remove(item);
         public IEnumerator<T> GetEnumerator() => _items.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
@@ -30,6 +31,6 @@ namespace task03
         public IEnumerable<T> FilterAndSort(Func<T, bool> predicate, Func<T, IComparable> keySelector)
         {
             return _items.Where(predicate).OrderBy(keySelector);
-        }
+        }       
     }
 }
