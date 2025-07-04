@@ -1,5 +1,5 @@
 using Xunit;
-using Moq;
+using task04;
 
 public class SpaceshipTests
 {
@@ -24,7 +24,7 @@ public class SpaceshipTests
     {
         ISpaceship fighter = new Fighter();
         Assert.Equal(100, fighter.Speed);
-        Assert.Equal(50, fighter.FirePower)
+        Assert.Equal(50, fighter.FirePower);
     }
 
     [Fact]
@@ -116,7 +116,7 @@ public class SpaceshipTests
     {
         var fighter = new Fighter();
         var initialDamage = fighter.Damage;
-        cruiser.Fire();
+        fighter.Fire();
         Assert.Equal(initialDamage + fighter.FirePower, fighter.Damage);
     }
 }

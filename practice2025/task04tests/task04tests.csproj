@@ -20,4 +20,8 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\task04\task04.csproj" />
+  </ItemGroup>
+
 </Project>
