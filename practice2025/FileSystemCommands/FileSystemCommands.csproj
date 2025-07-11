@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CommandLib\CommandLib.csproj" />
+    <ProjectReference Include="..\CommonAttributes\CommonAttributes.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
