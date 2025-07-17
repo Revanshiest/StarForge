@@ -14,9 +14,10 @@ namespace task14
         public static double Solve(double a, double b, Func<double, double> function, double step, int threadsNumber)
         {
             double result = 0.0;
-            object locker = new object(); // Для синхронизации сложения double
+
+            object locker = new object();
             Thread[] threads = new Thread[threadsNumber];
-            Barrier barrier = new Barrier(threadsNumber + 1); // +1 для главного потока
+            Barrier barrier = new Barrier(threadsNumber + 1);
 
             double range = b - a;
             double part = range / threadsNumber;
@@ -30,25 +31,24 @@ namespace task14
                     double localB = (threadIndex == threadsNumber - 1) ? b : localA + part;
                     double localResult = 0.0;
 
-                    // Метод трапеций на подотрезке
                     for (double x = localA; x < localB; x += step)
                     {
                         double xNext = Math.Min(x + step, localB);
                         localResult += (function(x) + function(xNext)) * (xNext - x) / 2.0;
                     }
 
-                    // Безопасное добавление к общему результату
                     lock (locker)
                     {
                         result += localResult;
                     }
 
-                    barrier.SignalAndWait(); // Сообщаем о завершении
+                  
                 });
                 threads[t].Start();
             }
 
-            barrier.SignalAndWait(); // Ждём завершения всех потоков
+
+            barrier.SignalAndWait();
             return result;
         }
     }
