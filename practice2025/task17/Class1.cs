@@ -21,11 +21,11 @@ public class ServerThread
     public void Start() => _thread.Start();
 
     public void AddCommand(ICommand command)
-    {
-        if (_hardStopping)
-            throw new WrongThreadException("Cannot enqueue commands: thread is hard stopping.");
-        _queue.Add(command);
-    }
+{
+    if (_hardStopping)
+        return;
+    _queue.Add(command);
+}
 
     public bool IsAlive => _thread.IsAlive;
 
