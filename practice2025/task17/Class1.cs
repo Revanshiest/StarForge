@@ -23,7 +23,7 @@ public class ServerThread
     public void AddCommand(ICommand command)
     {
         if (_hardStopping)
-            throw new InvalidOperationException("Cannot enqueue commands: thread is hard stopping.");
+            throw new WrongThreadException("Cannot enqueue commands: thread is hard stopping.");
         _queue.Add(command);
     }
 
@@ -42,7 +42,7 @@ public class ServerThread
                 {
                     cmd = _queue.Take();
                 }
-                catch (InvalidOperationException)
+                catch (WrongThreadException)
                 {
                     break; // Queue completed
                 }
