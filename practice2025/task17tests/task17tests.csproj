@@ -18,4 +18,8 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\task17\task17.csproj" />
+  </ItemGroup>
+
 </Project>
