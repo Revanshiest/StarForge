@@ -59,7 +59,7 @@ public class ServerThread
                 if (_hardStopping)
                     break;
 
-                if (_softStopping && _queue.Count == 0)
+                if (_softStopping && _queue.IsCompleted)
                     break;
             }
         }
